@@ -1,6 +1,11 @@
 function assert(actual, expected, message) {
-  if (actual !== expected) {
-    throw new Error(`${message} - Expected: ${expected}, Actual: ${actual}`);
+  const actualStr = JSON.stringify(actual);
+  const expectedStr = JSON.stringify(expected);
+
+  if (actualStr !== expectedStr) {
+    throw new Error(
+      `${message} - Expected: ${expectedStr}, Actual: ${actualStr}`,
+    );
   }
 }
 
