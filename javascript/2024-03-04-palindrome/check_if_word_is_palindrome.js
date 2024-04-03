@@ -47,5 +47,3 @@ test("Palindrome Test - Mixed Case Palindrome", function () {
 test("Palindrome Test - Mixed Case Non-Palindrome", function () {
   assert(isPalindrome("Racecar"), false, "Test 10");
 });
-
-// Add more test cases as needed
