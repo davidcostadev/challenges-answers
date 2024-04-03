@@ -9,6 +9,36 @@ function assert(actual, expected, message) {
   }
 }
 
+function assertList(actual, expected, message) {
+  const rows = actual.length;
+  const cols = actual[0].length;
+
+  for (let i = 0; i < rows; i++) {
+    let rowError = false;
+    let incorrectRow = "";
+    let correctRow = "";
+
+    for (let j = 0; j < cols; j++) {
+      if (actual[i][j] !== expected[i][j]) {
+        rowError = true;
+        incorrectRow += actual[i][j];
+        correctRow += expected[i][j];
+      } else {
+        incorrectRow += " ";
+        correctRow += " ";
+      }
+    }
+
+    if (rowError) {
+      throw new Error(
+        `${message} - Row ${
+          i + 1
+        } is incorrect: [${incorrectRow}] - Expected: [${correctRow}]`,
+      );
+    }
+  }
+}
+
 function test(testName, callback) {
   try {
     callback();
@@ -27,4 +57,4 @@ function test(testName, callback) {
   }
 }
 
-module.exports = { assert, test };
+module.exports = { assert, assertList, test };
