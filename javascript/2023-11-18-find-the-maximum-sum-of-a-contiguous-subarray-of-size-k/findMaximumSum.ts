@@ -1,15 +1,15 @@
-export function findMaximumSum(arr: number[], K: number) {
-  let windowSum = 0;
-
-  for (let i = 0; i < K; i++) {
-    windowSum += arr[i];
+export function findMaximumSum(nums: number[], k: number) {
+  let winSum = 0;
+  for (let i = 0; i < k; i++) {
+    winSum += nums[i];
   }
+  let maxSum = winSum;
 
-  let maxSum = windowSum;
-
-  for (let i = K; i < arr.length; i++) {
-    windowSum += arr[i] - arr[i - K];
-    maxSum = Math.max(windowSum, maxSum);
+  for (let i = k; i < nums.length; i++) {
+    const las = nums[i];
+    const one = nums[i - k];
+    winSum = winSum - one + las;
+    maxSum = Math.max(maxSum, winSum);
   }
 
   return maxSum;
